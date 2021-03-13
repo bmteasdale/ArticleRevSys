@@ -20,13 +20,19 @@ To be able to connect this JSF project to the Mongo Database, you will need the 
 ```
 
 To be able to share the local Mongo database to another system, you will need to run the following commands:
+
 *To dump database to output directory*
+
 ```mongodump --db DatabaseName -o ./DirectoryName```
+
 *After copying that directory to another machine*
+
 ```mongorestore --db DBName ./DirectoryName``` 
 
 ## How To Run
-Easiest way to run this project after cloning this repo is to open up the project folder in NetBeans IDE.
+Before the project is run, the MongoDB primary daemon process needs to be started using the command `mongod --dbpath ~/data/db` (*assuming you have set your data directory in the root folder `~`.*)
+
+This project can be opened in NetBeans IDE and can be easily run there.
 
 ## Demo Screenshots
 *To be later added as more features are implemented*
