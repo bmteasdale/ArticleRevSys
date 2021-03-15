@@ -34,5 +34,10 @@ Before the project is run, the MongoDB primary daemon process needs to be starte
 
 This project can be opened in NetBeans IDE and can be easily run there.
 
+
+## Project Workflow
+![Project Workflow Diagram](CS483Assign2.png)
+
+
 ## Demo Screenshots
 *To be later added as more features are implemented*
