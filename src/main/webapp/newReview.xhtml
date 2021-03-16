@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>ArticleRevSys - New Review</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
@@ -23,6 +24,8 @@ and open the template in the editor.
             </div>
         </nav><br/>
         <h:form style="font-family: Raleway; margin: 0 auto; width: 80%; text-align: center;">
+            <p:growl id="reviewGrowl" showDetail="true" sticky="false"/>
+            <f:passThroughAttribute name="autocomplete" value="off"/>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
@@ -34,47 +37,61 @@ and open the template in the editor.
                             <h3 style="font-family: Quicksand, sans-serif;">Add a New Review</h3><br/>
                             <div class="input-group mb-3">
                                 <h:inputText 
+                                    id="Title"
                                     style="font-family: Quicksand, sans-serif;"
                                     class="form-control" 
+                                    value="#{reviewBean.pubTitle}"
                                     a:placeholder="Publication Title" 
                                     required="true"/>
-                                <h:inputText                                   
+                                <h:inputText  
+                                    id="URL"
                                     style="font-family: Quicksand, sans-serif;"
                                     class="form-control" 
+                                    value="#{reviewBean.pubURL}"
                                     a:placeholder="Publication URL" 
                                     required="true"/>
                             </div>
                             <div class="form-group mb-3">
-                                <h:inputTextarea class="form-control" a:placeholder="Summary" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
+                                <h:inputTextarea id="Summary" class="form-control" a:placeholder="Summary" value="#{reviewBean.summary}" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
                             </div>
                             <div class="form-group mb-3">
-                                <h:inputTextarea class="form-control" a:placeholder="Positive Comments" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
+                                <h:inputTextarea id="Positive-Comments" class="form-control" a:placeholder="Positive Comments" value="#{reviewBean.posComments}" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
                             </div>
                             <div class="form-group mb-3">
-                                <h:inputTextarea class="form-control" a:placeholder="Negative Comments" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
+                                <h:inputTextarea id="Negative-Comments" class="form-control" a:placeholder="Negative Comments" value="#{reviewBean.negComments}" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
                             </div>
                             <div class="form-group mb-3">
-                                <h:inputTextarea class="form-control" a:placeholder="Major Points" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
+                                <h:inputTextarea id="Major-Points" class="form-control" a:placeholder="Major Points" value="#{reviewBean.majPoints}" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
                             </div>
                             <div class="form-group mb-3">
-                                <h:inputTextarea class="form-control" a:placeholder="Minor Points" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
+                                <h:inputTextarea id="Minor-Points" class="form-control" a:placeholder="Minor Points" value="#{reviewBean.minPoints}" style="font-family: Quicksand, sans-serif;" rows="3" required="true"></h:inputTextarea>
                             </div>
                             <div class="input-group mb-3">
                                 <h:inputText 
+                                    id="Recommendation"
                                     style="font-family: Quicksand, sans-serif;"
                                     class="form-control" 
-                                    a:placeholder="Recommendation" 
+                                    a:placeholder="Recommendation (Accept / Reject)" 
+                                    value="#{reviewBean.recommendation}"
                                     required="true"/>
                             </div>
                             <div class="input-group mb-3">
                                 <h:inputText  
+                                    id="Reviewer-Name"
                                     style="font-family: Quicksand, sans-serif;"
                                     class="form-control" 
                                     a:placeholder="Reviewer's Name" 
+                                    value="#{reviewBean.revName}"
                                     required="true"/>
                             </div>
                             <div class="d-grid gap-2">
-                                <h:commandButton value="Save" class="btn btn-primary" style="font-family: Quicksand, sans-serif;"></h:commandButton>
+                                <h:commandButton 
+                                    value="Save"
+                                    actionListener="#{reviewBean.showAction()}"
+                                    class="btn btn-primary" 
+                                    style="font-family: Quicksand, sans-serif;"
+                                    action="#{reviewBean.saveReview()}"
+                                    ></h:commandButton>
                             </div>
                             <br/>
                             <hr style="margin: 0 auto; width: 75%"/>

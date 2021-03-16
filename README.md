@@ -23,14 +23,31 @@ To be able to share the local Mongo database to another system, you will need to
 
 *To dump database to output directory*
 
-```mongodump --db DatabaseName -o ./DirectoryName```
+```bash
+$ mongod --dbpath ~/data/db 
+$ mongodump --db DatabaseName -o ./DirectoryName
+```
 
 *After copying that directory to another machine*
 
-```mongorestore --db DBName ./DirectoryName``` 
+```bash
+$ mongod --dbpath ~/data/db
+$ mongorestore --db DBName ./DirectoryName
+``` 
+
+> **Note:** If macOS prevents either of `mongod`, `mongodump`, or `mongorestore`
+> follow the steps below:
+> 1. Open *System Preferences*
+> 2. Select the *Security and Privacy* pane.
+> 3. Under the General tab, click the button to the right of the message about mongo, labelled either **Open Anyway** or **Allow Anyway** depending on your version of macOS.
+
 
 ## How To Run
-Before the project is run, the MongoDB primary daemon process needs to be started using the command `mongod --dbpath ~/data/db` (*assuming you have set your data directory in the root folder `~`.*)
+Before the project is run, the MongoDB primary daemon process needs to be started using the command (*assuming you have set your data directory in the root folder `~`.*) 
+
+```bash
+$ mongod --dbpath ~/data/db
+```
 
 This project can be opened in NetBeans IDE and can be easily run there.
 

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.csci483.assign2;
+import org.bson.types.ObjectId;
 
 
 /**
@@ -11,6 +12,7 @@ package com.csci483.assign2;
  * @author bmteasdale
  */
 public class Review {
+    private ObjectId reviewID;
     private String pubTitle;
     private String pubURL;
     private String summary;
@@ -20,10 +22,12 @@ public class Review {
     private String minPoints;
     private String recommendation;
     private String revName;
-    private Double avgScore;
+    private int highestScore;
 
-
-    public Review(String pubTitle, 
+    
+    public Review(
+            ObjectId reviewID,
+            String pubTitle, 
             String pubURL, 
             String summary, 
             String posComments, 
@@ -32,7 +36,8 @@ public class Review {
             String minPoints, 
             String recommendation, 
             String revName, 
-            Double avgScore) {
+            int highestScore) {
+        this.reviewID = reviewID;
         this.pubTitle = pubTitle;
         this.pubURL = pubURL;
         this.summary = summary;
@@ -42,10 +47,18 @@ public class Review {
         this.minPoints = minPoints;
         this.recommendation = recommendation;
         this.revName = revName;
-        this.avgScore = avgScore;
+        this.highestScore = highestScore;
+        
     }
 
+    public ObjectId getReviewID() {
+        return reviewID;
+    }
 
+    public void setReviewID(ObjectId id) {
+        this.reviewID = id;
+    }
+    
     public String getPubTitle() {
         return pubTitle;
     }
@@ -118,11 +131,11 @@ public class Review {
         this.revName = revName;
     }
     
-    public Double getAvgScore() {
-        return avgScore;
+    public int getHighestScore() {
+        return highestScore;
     }
 
-    public void setAvgScore(Double avgScore) {
-        this.avgScore = avgScore;
+    public void setHighestScore(int score) {
+        this.highestScore = score;
     }
 }
